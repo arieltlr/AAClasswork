@@ -1,13 +1,13 @@
-require_relative ../skeleton/lib PolyTreeNode
+require_relative "../skeleton/lib/00_tree_node.rb"
 
 class KnightPathFinder
+    attr_reader :root_node, :board
 
     def initialize(pos)
-        @board = Array.new(8){Array.new(8,PolyTreeNode.new())} # poly tree
-        self.root_node = @board(pos)
-
-        @kpf = KnightPathFinder.new(pos)
-        build_move_tree(self.root_node)
+        @pos = pos
+        @board = Array.new(8){Array.new(8)} # poly tree
+        @root_node = PolyTreeNode.new(pos)
+        self.build_move_tree
     end
 
     def [](pos)
@@ -18,6 +18,9 @@ class KnightPathFinder
     def []=(pos,val)
         x,y = pos
         @board[x][y] = val
+    end
+
+    def build_move_tree
     end
 
 end
