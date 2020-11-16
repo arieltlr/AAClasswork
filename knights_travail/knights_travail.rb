@@ -2,13 +2,13 @@ require_relative "../skeleton/lib/00_tree_node.rb"
 require "byebug"
 
 class KnightPathFinder
-    attr_reader :root_node, :board
+    attr_reader :root_node, :board :considered_positions
 
     def initialize(pos)
         @pos = pos
         @board = Array.new(8){Array.new(8)} # poly tree
         @root_node = PolyTreeNode.new(pos)
-        self.build_move_tree
+        # self.build_move_tree
         @considered_positions = [pos]
     end
 
@@ -22,25 +22,19 @@ class KnightPathFinder
         @board[x][y] = val
     end
 
-    self.valid_moves(pos)
+    def self.valid_moves(pos)
         row, col = pos
-
         valids_filtered = []
     
-        valids = [[row + 2, col - 1], [row + 2, col + 1], [row - 1, col + 2], [row - 1, col -2]        
-        [row - 2, col + 1], [row - 2, col - 1], [row + 1, col - 2],[row + 1, col + 2]]
+        valids = [[row + 2, col - 1], [row + 2, col + 1], [row - 1, col + 2], [row - 1, col -2],         #limited rows: # 0, 1, 6, 7
+        [row - 2, col + 1], [row - 2, col - 1], [row + 1, col - 2], [row + 1, col + 2]]             #limited cols   # 0, 1, 6, 7
 
         valids.each do |position|
-            next if position[0] < 0 || position[1] < 0 
-            next if position[0] > 7 || position[1] > 7
-            valids_filtered << position 
+            if !(position[0] < 0 || position[1] < 0) && !(position[0] > 7 || position[1] > 7)
+             valids_filtered << position 
+            end
         end
-        valids_filtered
-        #limited rows:
-        # 0, 1, 6, 7
-        #limited cols
-        # 0, 1, 6, 7
-
+      valids_filtered
     end
 
     def new_move_positions(pos)
@@ -57,13 +51,13 @@ class KnightPathFinder
 
     end
 
-    def build_move_tree
-        @root_node.add_child(new_move_positions(@pos))
-    end
+    # def build_move_tree
+    #     @root_node.add_child(new_move_positions(@pos))
+    # end
 
-    def find_path
+    # def find_path
 
-    end
+    # end
 
 
          
