@@ -23,6 +23,24 @@ class KnightPathFinder
     def build_move_tree
     end
 
+    def find_path
+
+    end
+
+    self.valid_moves(pos)
+        row,col = pos
+     if @root_node.value[0] + 2 == row || @root_node.value[0] - 2 == row &&
+        @root_node.value[1] + 1 == col || @root_node.value[1] - 1 == col
+        return true
+
+     elsif @root_node.value[1] + 2 == row || @root_node.value[1] - 2 == row &&
+         @root_node.value[0] + 1 == col || @root_node.value[0] - 1 == col
+         return true
+     else
+        return false
+     end   
+    end
+
 end
 
 
