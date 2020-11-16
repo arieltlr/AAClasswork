@@ -2,7 +2,7 @@ require_relative "../skeleton/lib/00_tree_node.rb"
 require "byebug"
 
 class KnightPathFinder
-    attr_reader :root_node, :board :considered_positions
+    attr_reader :root_node, :board
 
     def initialize(pos)
         @pos = pos
@@ -51,9 +51,13 @@ class KnightPathFinder
 
     end
 
-    # def build_move_tree
-    #     @root_node.add_child(new_move_positions(@pos))
-    # end
+    def build_move_tree(pos)
+        children = new_move_positions(pos).map {|position| PolyTreeNode.new(position)}
+        children.each do |child|
+            @root_node.add_child(child)
+        end
+
+    end
 
     # def find_path
 
