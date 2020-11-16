@@ -28,19 +28,34 @@ class KnightPathFinder
 
     end
 
-    KnightPathFinder.valid_moves?(pos)
+    self.valid_moves(pos)
         row, col = pos
-        debugger
-        if (@root_node.value[0] + 2 == row || @root_node.value[0] - 2 == row) && (@root_node.value[1] + 1 == col || @root_node.value[1] - 1 == col)
-            return row, col
-            debugger
-        # elsif (@root_node.value[1] + 2 == row || @root_node.value[1] - 2 == row) && (@root_node.value[0] + 1 == col || @root_node.value[0] - 1 == col)
-        #     debugger
-        #     return true
-        else
-            return false
-        end   
+    
+       valids = [[row + 2, col - 1], [row + 2, col + 1], [row - 1, col + 2], [row - 1, col -2]        
+        [row - 2, col + 1], [row - 2, col - 1], [row + 1, col - 2],[row + 1, col + 2]]
+
     end
+
+
+
+         # # valid_moves = []
+        # # (1..2).each do |row|
+        # #     2.down_to(1).each do |col|
+        # #         valid_moves << [row,col]
+
+        #     end 
+        # end
+        
+        # if (@root_node.value[0] + 2 == row || @root_node.value[0] - 2 == row) && (@root_node.value[1] + 1 == col || @root_node.value[1] - 1 == col)
+        #     return row, col
+            
+        # elsif (@root_node.value[1] + 2 == row || @root_node.value[1] - 2 == row) && (@root_node.value[0] + 1 == col || @root_node.value[0] - 1 == col)
+            
+        #     return true
+        # else
+        #     return false
+        # end   
+    
 
 end
 
