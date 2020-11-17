@@ -51,11 +51,15 @@ class KnightPathFinder
 
     end
 
-    def build_move_tree(pos)
+    def build_move_tree
+        pos = @root_node.value 
+        until new_move_positions(pos).nil?
         children = new_move_positions(pos).map {|position| PolyTreeNode.new(position)}
         children.each do |child|
-            @root_node.add_child(child)
+            pos.add_child(child)
         end
+            pos = children.first
+            children.shift
 
     end
 
